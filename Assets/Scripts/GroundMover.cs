@@ -4,11 +4,10 @@ using System.Collections;
 public class GroundMover : MonoBehaviour {
 
 	private float speed;
-
-	public DoorManager dm;
-
-	void Start () {
-		speed = dm.GetSpeed();
+	
+	public float Speed {
+		get { return speed; }
+		set { speed = value; }
 	}
 
 	void Update () {
