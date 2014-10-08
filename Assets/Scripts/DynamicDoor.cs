@@ -10,9 +10,8 @@ public class DynamicDoor : MonoBehaviour {
 	private float size = 1.0f;
 	private float speed;
 	private Vector3 align = new Vector3(0.0f, 2.0f, 3.0f);
-	private Vector3 incrmt = Vector3.back;
+	private Vector3 spacing = Vector3.back;
 	private Quaternion baseRot = Quaternion.Euler(0,90,0);
-
 
 	public GameObject BaseWall;
 	public int Code {
@@ -25,10 +24,10 @@ public class DynamicDoor : MonoBehaviour {
 	}
 
 	private void Start () {
-		incrmt *= size;
+		spacing *= size;
 		wallGrid0 = CreateGrid(BaseWall, transform.position + align);
-		CreateLine(BaseWall, transform.position + align + incrmt * 3);
-		wallGrid1 = CreateGrid(BaseWall, transform.position + align + incrmt * 4);
+		CreateLine(BaseWall, transform.position + align + spacing * 3);
+		wallGrid1 = CreateGrid(BaseWall, transform.position + align + spacing * 4);
 
 		UpdateDoor ();
 	}
