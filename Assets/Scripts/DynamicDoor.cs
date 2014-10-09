@@ -26,6 +26,8 @@ public class DynamicDoor : MonoBehaviour {
 	private InputManager iManager;		// scene input manager
 
 	public GameObject BaseWall;		// base quad for bulding door
+	public GameObject CorrectEffect;		// particles for success
+	public GameObject FailEffect;		// particles for fail
 	public float Speed {
 		set { speed = value; }
 	}
@@ -60,9 +62,11 @@ public class DynamicDoor : MonoBehaviour {
 		// collision with player
 		if (c.tag == "Player") {
 			if (code == iManager.Value) {		// correct
-				Debug.Log("correct");
+				Instantiate(CorrectEffect);
 			} else {		// incorrect
-				Debug.Log("fail");
+				Instantiate(FailEffect);
+				Destroy (c.gameObject);
+				Invoke("RestartLevel", 2);
 			}
 			transform.Translate(Vector3.right * doorSpacing * doorCount);
 			UpdateDoor();
@@ -152,6 +156,10 @@ public class DynamicDoor : MonoBehaviour {
 		}
 
 		return grid;
+	}
+
+	private void RestartLevel () {
+		Application.LoadLevel(Application.loadedLevel);
 	}
 
 	// door generates and shows the code

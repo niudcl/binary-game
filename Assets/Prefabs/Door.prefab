@@ -53,6 +53,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseWall: {fileID: 100000, guid: b7809fcf533c6fe45a17d37ffc999948, type: 2}
+  CorrectEffect: {fileID: 100000, guid: c8edc081f6572064c9cb8b28a79d23d5, type: 2}
+  FailEffect: {fileID: 100000, guid: 7b257f4c289fc4a48afc4c93c3d31fe7, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

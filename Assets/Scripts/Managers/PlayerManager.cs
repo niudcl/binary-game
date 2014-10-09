@@ -38,10 +38,15 @@ public class PlayerManager : MonoBehaviour {
 	
 	
 	private void Update () {
-		// follow the player
-		tm.transform.position = player.transform.position + Vector3.up;
-		// update the text
-		tm.text = iManager.Value.ToString();
+		if (player == null) {
+			// destroy text mesh if player fails
+			Destroy (tm);
+		} else {
+			// follow the player
+			tm.transform.position = player.transform.position + Vector3.up;
+			// update the text
+			tm.text = iManager.Value.ToString();
+		}
 	}
 
 }

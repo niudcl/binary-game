@@ -28,7 +28,7 @@ public class DoorManager : MonoBehaviour {
 	private void BuildDoors () {
 		for(int i = 0; i < doorCount; i++) {
 			DynamicDoor d = (DynamicDoor)Instantiate(door, 
-			                           new Vector3(doorSpacing * i + doorSpacing, 0, 0),
+			                           new Vector3(doorSpacing * i + doorSpacing * 1.5f, 0, 0),
 			                           Quaternion.identity);
 			d.Speed = speed;
 			d.DoorCount = doorCount;
