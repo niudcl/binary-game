@@ -1,19 +1,28 @@
-﻿using UnityEngine;
+﻿/***************************************
+ * 
+ * 	DynamicDoor
+ * 
+ *  
+ * 
+ * ************************************/
+using UnityEngine;
 using System.Collections;
 
 public class DynamicDoor : MonoBehaviour {
 
-	private int code;
-	private Color blank = Color.white;
-	private Color fill = Color.green;
-	private GameObject[] wallGrid0, wallGrid1;
-	private float size = 1.0f;
-	private float speed;
-	private Vector3 align = new Vector3(0.0f, 2.0f, 3.0f);
-	private Vector3 spacing = Vector3.back;
-	private Quaternion baseRot = Quaternion.Euler(0,90,0);
+	private int code;		// the number on this door
+	private Color blank = Color.white;		// color for number
+	private Color fill = Color.green;		// color for background
+	private GameObject[] wallGrid0, wallGrid1;		// array for left and right digit
+	private float size = 1.0f;		// size of base quad
+	private float speed;		// speed 
+	private Vector3 align = new Vector3(0.0f, 2.0f, 3.0f);		// offset for digits
+	private Vector3 spacing = Vector3.back;		// size of space column
+	private Quaternion baseRot = Quaternion.Euler(0,90,0);		// base rotation
+	private int doorCount;		// number of doors
+	private int doorSpacing;		//
 
-	public GameObject BaseWall;
+	public GameObject BaseWall;		// base quad for bulding door
 	public int Code {
 		get { return code; }
 		set { code = value; }
@@ -24,7 +33,9 @@ public class DynamicDoor : MonoBehaviour {
 	}
 
 	private void Start () {
+		// setup spacing
 		spacing *= size;
+		// create digits (left, space, right)
 		wallGrid0 = CreateGrid(BaseWall, transform.position + align);
 		CreateLine(BaseWall, transform.position + align + spacing * 3);
 		wallGrid1 = CreateGrid(BaseWall, transform.position + align + spacing * 4);
@@ -36,6 +47,7 @@ public class DynamicDoor : MonoBehaviour {
 		transform.Translate(new Vector3(speed * Time.deltaTime, 0.0f, 0.0f));
 	}
 
+	// breaks int into two digits
 	private int[] ParsePwd (int pwd) {
 		int[] pass = new int[2];
 		pass[0] = pwd / 10;
@@ -43,6 +55,7 @@ public class DynamicDoor : MonoBehaviour {
 		return pass;
 	}
 
+	// builds a grid of baseObj
 	private GameObject[] CreateGrid (GameObject baseObj, Vector3 offset) {
 		GameObject[] grid = new GameObject[15];
 		for (int y = 0; y < 5; y++) {
@@ -56,6 +69,7 @@ public class DynamicDoor : MonoBehaviour {
 		return grid;
 	}
 
+	// builds a column of baseObj
 	private void CreateLine (GameObject baseObj, Vector3 offset) {
 		GameObject obj;
 		for (int y = 0; y < 5; y++) {
@@ -65,8 +79,10 @@ public class DynamicDoor : MonoBehaviour {
 			obj.transform.parent = transform;
 		}
 	}
-	
+
+	// changes the color to "draw" a number
 	private GameObject[] ColorGrid (GameObject[] grid, int number) {
+		// error checking
 		if (number > 9 || number < 0) {
 			Debug.LogError("Number passed to ColorGrid outside of range.");
 			return grid;
@@ -116,6 +132,7 @@ public class DynamicDoor : MonoBehaviour {
 		return grid;
 	}
 
+	// updates to door to show the code
 	public void UpdateDoor () {
 		int[] digits = ParsePwd(code);
 		wallGrid0 = ColorGrid (wallGrid0, digits[0]);
