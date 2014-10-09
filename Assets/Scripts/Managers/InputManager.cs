@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour {
 	private float uiUnit;		// unit for scaling ui
 	private float uiStart;		// button ui starting point
 	private GUIStyle style;		// style for button text
-	
+
 	public Font font;		// font for button text
 	public Texture2D OffTex;		// button off texture 
 	public Texture2D OnTex;		// button on texture

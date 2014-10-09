@@ -21,7 +21,7 @@ public class GroundManager : MonoBehaviour {
 
 	void Start () {
 		// get speed from DoorManager
-		speed = GameObject.FindObjectOfType<DoorManager>().GetSpeed();
+		speed = GameObject.FindObjectOfType<DoorManager>().Speed;
 
 		// build ground objects
 		for (int i = 0; i < 2; i++) {

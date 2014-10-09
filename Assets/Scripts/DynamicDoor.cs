@@ -1,8 +1,10 @@
 ﻿/***************************************
  * 
  * 	DynamicDoor
- * 
  *  
+ *  
+ *  
+ *  Requires: 	InputManager 	(class)
  * 
  * ************************************/
 using UnityEngine;
@@ -20,21 +22,28 @@ public class DynamicDoor : MonoBehaviour {
 	private Vector3 spacing = Vector3.back;		// size of space column
 	private Quaternion baseRot = Quaternion.Euler(0,90,0);		// base rotation
 	private int doorCount;		// number of doors
-	private int doorSpacing;		//
+	private int doorSpacing;		// spacing of doors
+	private InputManager iManager;		// scene input manager
 
 	public GameObject BaseWall;		// base quad for bulding door
-	public int Code {
-		get { return code; }
-		set { code = value; }
-	}
 	public float Speed {
-		get { return speed; }
 		set { speed = value; }
+	}
+	public int DoorCount {
+		set { doorCount = value; }
+	}
+	public int DoorSpacing {
+		set { doorSpacing = value; }
 	}
 
 	private void Start () {
-		// setup spacing
+		// setup quad spacing
 		spacing *= size;
+
+		// connect to inputmanager
+		iManager = GameObject.FindObjectOfType<InputManager>();
+
+
 		// create digits (left, space, right)
 		wallGrid0 = CreateGrid(BaseWall, transform.position + align);
 		CreateLine(BaseWall, transform.position + align + spacing * 3);
@@ -45,6 +54,19 @@ public class DynamicDoor : MonoBehaviour {
 
 	private void Update () {
 		transform.Translate(new Vector3(speed * Time.deltaTime, 0.0f, 0.0f));
+	}
+	
+	private void OnTriggerEnter(Collider c) {
+		// collision with player
+		if (c.tag == "Player") {
+			if (code == iManager.Value) {		// correct
+				Debug.Log("correct");
+			} else {		// incorrect
+				Debug.Log("fail");
+			}
+			transform.Translate(Vector3.right * doorSpacing * doorCount);
+			UpdateDoor();
+		}
 	}
 
 	// breaks int into two digits
@@ -132,8 +154,9 @@ public class DynamicDoor : MonoBehaviour {
 		return grid;
 	}
 
-	// updates to door to show the code
+	// door generates and shows the code
 	public void UpdateDoor () {
+		code = (int)Random.Range(0.0f, 639.9f) / 10;
 		int[] digits = ParsePwd(code);
 		wallGrid0 = ColorGrid (wallGrid0, digits[0]);
 		wallGrid1 = ColorGrid (wallGrid1, digits[1]);

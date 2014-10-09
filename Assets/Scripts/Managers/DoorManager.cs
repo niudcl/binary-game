@@ -16,7 +16,10 @@ public class DoorManager : MonoBehaviour {
 	private float speed = -3.0f;
 
 	public DynamicDoor door;
-	
+	public float Speed {
+		get { return speed; }
+	}
+
 	private void Start () {
 		doors = new List<DynamicDoor>();
 		BuildDoors();
@@ -27,13 +30,10 @@ public class DoorManager : MonoBehaviour {
 			DynamicDoor d = (DynamicDoor)Instantiate(door, 
 			                           new Vector3(doorSpacing * i + doorSpacing, 0, 0),
 			                           Quaternion.identity);
-			d.Code = (int)Random.Range(0.0f, 639.9f) / 10;
 			d.Speed = speed;
+			d.DoorCount = doorCount;
+			d.DoorSpacing = doorSpacing;
 			doors.Add(d);
 		}
-	}
-
-	public float GetSpeed () {
-		return speed;
 	}
 }
