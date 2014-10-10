@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour {
 	private void Start () {
 		// connect to input manager for setting num
 		iManager = GameObject.FindObjectOfType<InputManager>();
-		tm.text = iManager.Value.ToString();
+		tm.text = iManager.PlayerValue.ToString();
 		// find player
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
@@ -45,7 +45,7 @@ public class PlayerManager : MonoBehaviour {
 			// follow the player
 			tm.transform.position = player.transform.position + Vector3.up;
 			// update the text
-			tm.text = iManager.Value.ToString();
+			tm.text = iManager.PlayerValue.ToString();
 		}
 	}
 

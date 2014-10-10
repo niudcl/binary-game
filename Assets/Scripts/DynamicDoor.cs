@@ -61,8 +61,9 @@ public class DynamicDoor : MonoBehaviour {
 	private void OnTriggerEnter(Collider c) {
 		// collision with player
 		if (c.tag == "Player") {
-			if (code == iManager.Value) {		// correct
+			if (code == iManager.PlayerValue) {		// correct
 				Instantiate(CorrectEffect);
+				iManager.PlayerScore++;
 			} else {		// incorrect
 				Instantiate(FailEffect);
 				Destroy (c.gameObject);
