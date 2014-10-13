@@ -100,6 +100,7 @@ public class InputManager : MonoBehaviour {
 			GUI.Label(new Rect(uiStart + i * uiUnit, Screen.height - uiUnit, uiUnit, uiUnit),
 			          (1 << (5 - i)).ToString(), buttonStyle);
 		}
+		// draw score / hs
 		GUI.Label(new Rect(0, 0, uiUnit * 2.0f, uiUnit), 
 		          "SCORE " + playerScore.ToString(), scoreStyle);
 		GUI.Label(new Rect(Screen.width - (uiUnit * 2.0f), 0, uiUnit * 2.0f, uiUnit),

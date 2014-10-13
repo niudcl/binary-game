@@ -30,7 +30,6 @@ public class GroundManager : MonoBehaviour {
 			                                  Quaternion.identity);
 			gObjs[i].GetComponent<GroundMover>().Speed = speed;
 		}
-
 	}
 
 	void Update () {

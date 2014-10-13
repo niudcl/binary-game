@@ -45,7 +45,6 @@ public class DynamicDoor : MonoBehaviour {
 		// connect to inputmanager
 		iManager = GameObject.FindObjectOfType<InputManager>();
 
-
 		// create digits (left, space, right)
 		wallGrid0 = CreateGrid(BaseWall, transform.position + align);
 		CreateLine(BaseWall, transform.position + align + spacing * 3);
