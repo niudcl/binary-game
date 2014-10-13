@@ -66,7 +66,7 @@ public class DynamicDoor : MonoBehaviour {
 			} else {		// incorrect
 				Instantiate(FailEffect);
 				Destroy (c.gameObject);
-				Invoke("RestartLevel", (iManager.PlayerScore == 0) ? 0.5f : 2.5);
+				Invoke("RestartLevel", (iManager.PlayerScore == 0) ? 0.5f : 2.5f);
 			}
 			transform.Translate(Vector3.right * doorSpacing * doorCount);
 			UpdateDoor();
