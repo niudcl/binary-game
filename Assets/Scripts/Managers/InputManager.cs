@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour {
 	private GUIStyle scoreStyle;		// style for score text
 	private GUIStyle hScoreStyle;		// style for high score text
 	private HighScore hs;		// high score object
+	private DoorManager dm;		// door manager
+	private PlayerAnim pa;		// player animation controller
 
 	public Font font;		// font for button text
 	public Texture2D OffTex;		// button off texture 
@@ -33,12 +35,16 @@ public class InputManager : MonoBehaviour {
 			if (playerScore > hs.HScore) {
 				hs.HScore = playerScore;
 			}
+			dm.Speed -= 0.05f;
+			pa.Speed += 3.0f;
 		}
 	}
 
 	private void Start () {
 		// find high score
 		hs = GameObject.FindObjectOfType<HighScore>();
+		dm = GameObject.FindObjectOfType<DoorManager>();
+		pa = GameObject.FindObjectOfType<PlayerAnim>();
 
 		// setup buttons
 		rawInput = new BitArray(6);

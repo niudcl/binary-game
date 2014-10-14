@@ -14,15 +14,25 @@ public class DoorManager : MonoBehaviour {
 	private int doorSpacing = 24;
 	private List<DynamicDoor> doors;
 	private float speed = -3.0f;
+	private List<GameObject> speedListeners;
 
 	public DynamicDoor door;
 	public float Speed {
 		get { return speed; }
+		set { 
+			speed = value; 
+			BroadcastSpeed();
+		}
+	}
+
+	private void Awake () {
+		doors = new List<DynamicDoor>();
+		speedListeners = new List<GameObject>();
+		BuildDoors();
 	}
 
 	private void Start () {
-		doors = new List<DynamicDoor>();
-		BuildDoors();
+		AddSpeedListeners();
 	}
 
 	private void BuildDoors () {
@@ -34,6 +44,22 @@ public class DoorManager : MonoBehaviour {
 			d.DoorCount = doorCount;
 			d.DoorSpacing = doorSpacing;
 			doors.Add(d);
+		}
+	}
+
+	private void BroadcastSpeed () {
+		foreach(GameObject s in speedListeners) {
+			s.SendMessage("UpdateSpeed", speed);
+		}
+	}
+
+	private void AddSpeedListeners () {
+		foreach(DynamicDoor door in doors) {
+			speedListeners.Add(door.gameObject);
+		}
+		GroundMover[] gm = FindObjectsOfType<GroundMover>();
+		foreach(GroundMover ground in gm) {
+			speedListeners.Add(ground.gameObject);
 		}
 	}
 }

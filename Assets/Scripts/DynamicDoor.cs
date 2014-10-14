@@ -169,4 +169,8 @@ public class DynamicDoor : MonoBehaviour {
 		wallGrid0 = ColorGrid (wallGrid0, digits[0]);
 		wallGrid1 = ColorGrid (wallGrid1, digits[1]);
 	}
+
+	public void UpdateSpeed (float s) {
+		speed = s;
+	}
 }

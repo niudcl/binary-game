@@ -35,8 +35,7 @@ public class PlayerManager : MonoBehaviour {
 		// find player
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
-	
-	
+
 	private void Update () {
 		if (player == null) {
 			// destroy text mesh if player fails

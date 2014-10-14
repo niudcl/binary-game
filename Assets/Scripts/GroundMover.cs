@@ -10,7 +10,11 @@ public class GroundMover : MonoBehaviour {
 		set { speed = value; }
 	}
 
-	void Update () {
+	private void Update () {
 		transform.Translate(new Vector3(speed * Time.deltaTime, 0.0f, 0.0f));
+	}
+
+	public void UpdateSpeed (float s) {
+		speed = s;
 	}
 }

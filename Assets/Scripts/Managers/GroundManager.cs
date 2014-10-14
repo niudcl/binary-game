@@ -18,7 +18,7 @@ public class GroundManager : MonoBehaviour {
 
 	public GameObject Ground;		// ground prefab
 
-	void Start () {
+	void Awake () {
 		// build ground objects
 		for (int i = 0; i < 2; i++) {
 			gObjs[i] = (GameObject)Instantiate(Ground,

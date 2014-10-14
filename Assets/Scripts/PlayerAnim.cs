@@ -4,6 +4,10 @@ using System.Collections;
 public class PlayerAnim : MonoBehaviour {
 
 	private float speed = 180.0f;
+	public float Speed {
+		get { return speed; }
+		set { speed = value; }
+	}
 
 	private void Update () {
 		transform.position = new Vector3(transform.position.x,
