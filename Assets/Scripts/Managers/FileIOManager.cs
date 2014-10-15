@@ -30,9 +30,13 @@ public class FileIOManager : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			SaveToFile(hs.HScore, dir + filename);
 			Application.Quit();
 		}
+	}
+
+	private void OnApplicationQuit() {
+		// save high score before quit
+		SaveToFile(hs.HScore, dir + filename);
 	}
 
 	private void SaveToFile (int score, string path) {
