@@ -35,8 +35,8 @@ public class InputManager : MonoBehaviour {
 			if (playerScore > hs.HScore) {
 				hs.HScore = playerScore;
 			}
-			dm.Speed -= 0.05f;
-			pa.Speed += 3.0f;
+			dm.Speed = -3.0f - playerScore * 0.05f;
+			pa.Speed = 180 + playerScore * 3.0f;
 		}
 	}
 

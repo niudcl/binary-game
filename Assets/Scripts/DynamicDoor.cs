@@ -108,15 +108,6 @@ public class DynamicDoor : MonoBehaviour {
 
 	// changes the color to "draw" a number
 	private GameObject[] ColorGrid (GameObject[] grid, int number) {
-		// error checking
-		if (number > 9 || number < 0) {
-			Debug.LogError("Number passed to ColorGrid outside of range.");
-			return grid;
-		} else if (grid.Length != 15) {
-			Debug.LogError("Grid passed to ColorGrid is not the correct length.");
-			return grid;
-		}
-
 		bool[] pix = new bool[15];
 		switch(number) {
 		case 0:
@@ -148,6 +139,9 @@ public class DynamicDoor : MonoBehaviour {
 			break;
 		case 9:
 			pix = PixelNums.Nine;
+			break;
+		default:
+			Debug.LogError("Grid passed to ColorGrid is not the correct length.");
 			break;
 		}
 
