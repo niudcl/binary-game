@@ -66,14 +66,14 @@ public class InputManager : MonoBehaviour {
 		scoreStyle.font = font;
 		scoreStyle.fontSize = (int)(0.06f * Screen.height);
 		scoreStyle.alignment = TextAnchor.UpperLeft;
-		scoreStyle.normal.textColor = Color.cyan;
+        scoreStyle.normal.textColor = Color.white; //Color.cyan;
 		scoreStyle.fontStyle = FontStyle.Bold;
 
 		hScoreStyle = new GUIStyle();
 		hScoreStyle.font = font;
 		hScoreStyle.fontSize = (int)(0.06f * Screen.height);
 		hScoreStyle.alignment = TextAnchor.UpperRight;
-		hScoreStyle.normal.textColor = Color.cyan;
+		hScoreStyle.normal.textColor = Color.white;
 		hScoreStyle.fontStyle = FontStyle.Bold;
 	}
 	

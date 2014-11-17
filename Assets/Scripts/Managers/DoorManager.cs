@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 public class DoorManager : MonoBehaviour {
 
-	private int doorCount = 5;		
+	private int doorCount = 4;		
 	private int doorSpacing = 24;
 	private List<DynamicDoor> doors;
 	private float speed = -3.0f;

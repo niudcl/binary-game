@@ -19,16 +19,18 @@ public class FileIOManager : MonoBehaviour {
 		hs = GameObject.FindObjectOfType<HighScore>();
 		
 		dir = Directory.GetCurrentDirectory() + "\\";
-		hs.HScore = LoadFromFile(dir + filename);
+		hs.HScore = LoadScoreFromFile(dir + filename);
 
 		DontDestroyOnLoad(this);
 	}
 
 	private void Update () {
+        // move past loading level
 		if (Application.loadedLevel == 0) {
 			Application.LoadLevel(1);
 		}
 
+        // esc quits game
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			Application.Quit();
 		}
@@ -36,22 +38,21 @@ public class FileIOManager : MonoBehaviour {
 
 	private void OnApplicationQuit() {
 		// save high score before quit
-		SaveToFile(hs.HScore, dir + filename);
+        File.WriteAllText(dir + filename, hs.HScore.ToString());
 	}
 
-	private void SaveToFile (int score, string path) {
-		File.WriteAllText(path, score.ToString());
-	}
-
-	private int LoadFromFile (string path) {
-		string highscore;
-		try {
-			highscore = File.ReadAllText(path);
-		} catch (FileNotFoundException e) {
-			// no saved high score;
-			Debug.Log(e);
-			return 0;
-		}
-		return int.Parse(highscore);
+	private int LoadScoreFromFile (string path) {
+		int score;
+        if (File.Exists(path)) {
+            try {
+                score = int.Parse(File.ReadAllText(path));
+            } catch (System.FormatException e) {
+                Debug.Log(e.ToString());
+                score = 0;
+            }
+        } else {
+            score = 0;
+        }
+        return score;
 	}
 }

@@ -12,9 +12,11 @@ using System.Collections;
 
 public class DynamicDoor : MonoBehaviour {
 
+    private bool testing = true;
+
 	private int code;		// the number on this door
-	private Color blank = Color.white;		// color for number
-	private Color fill = Color.green;		// color for background
+	//private Color blank = Color.white;		// color for number
+	//private Color fill = Color.green;		// color for background
 	private GameObject[] wallGrid0, wallGrid1;		// array for left and right digit
 	private float size = 1.0f;		// size of base quad
 	private float speed;		// speed 
@@ -47,7 +49,7 @@ public class DynamicDoor : MonoBehaviour {
 
 		// create digits (left, space, right)
 		wallGrid0 = CreateGrid(BaseWall, transform.position + align);
-		CreateLine(BaseWall, transform.position + align + spacing * 3);
+		//CreateLine(BaseWall, transform.position + align + spacing * 3);
 		wallGrid1 = CreateGrid(BaseWall, transform.position + align + spacing * 4);
 
 		UpdateDoor ();
@@ -60,8 +62,8 @@ public class DynamicDoor : MonoBehaviour {
 	private void OnTriggerEnter(Collider c) {
 		// collision with player
 		if (c.tag == "Player") {
-			if (code == iManager.PlayerValue) {		// correct
-				Instantiate(CorrectEffect);
+			if (code == iManager.PlayerValue || testing) {		// correct
+                Instantiate(CorrectEffect);
 				iManager.PlayerScore++;
 			} else {		// incorrect
 				Instantiate(FailEffect);
@@ -146,7 +148,8 @@ public class DynamicDoor : MonoBehaviour {
 		}
 
 		for (int i = 0; i < 15; i++) {
-			grid[i].renderer.material.color = (pix[i]) ? fill : blank; 
+            grid[i].renderer.enabled = (pix[i]) ? true : false;
+			//grid[i].renderer.material.color = (pix[i]) ? fill : blank; 
 		}
 
 		return grid;
