@@ -44,7 +44,7 @@ public class PlayerManager : MonoBehaviour {
 			// follow the player
 			tm.transform.position = player.transform.position + Vector3.up;
 			// update the text
-			tm.text = iManager.PlayerValue.ToString();
+			tm.text = iManager.PlayerValue.ToString("D2");
 		}
 	}
 

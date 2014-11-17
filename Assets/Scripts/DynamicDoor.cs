@@ -12,7 +12,7 @@ using System.Collections;
 
 public class DynamicDoor : MonoBehaviour {
 
-    private bool testing = true;
+    private bool testing = false;
 
 	private int code;		// the number on this door
 	//private Color blank = Color.white;		// color for number
